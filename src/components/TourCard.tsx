@@ -123,7 +123,7 @@ export default function TourCard({
               </span>
               {perPerson !== null && (
                 <span className={styles.pricePer}>
-                  · ~${perPerson}/person for {tour.maxGuests}
+                  · as low as ~${perPerson}/person (for {tour.maxGuests})
                 </span>
               )}
             </>

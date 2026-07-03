@@ -1,66 +1,65 @@
-import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
+import TourCard from "@/components/TourCard";
+import ReviewTicker from "@/components/ReviewTicker";
+import TrustStrip from "@/components/TrustStrip";
+import { getTourBySlug } from "@/data/tours";
 
 export default function Home() {
+  const flagshipTour = getTourBySlug("full-cabot-trail");
+
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+      {/* 1. Hero */}
+      <section className={styles.hero}>
+        <div className={styles.heroOverlay}>
+          <h1 className={styles.heroTitle}>Cape Breton, told by someone who calls it home.</h1>
+          <p className={styles.heroSubtitle}>I am Jaswinder Singh. Come as a guest, leave as a friend.</p>
+          <Link href="/tours" className={styles.heroCTA}>
+            Explore Tours
+          </Link>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* 2. Immediate Trust Bar */}
+      <section className={styles.trustBar}>
+        <div className={styles.trustBadge}>
+          <strong>TripAdvisor 4.5★</strong> (54 reviews)
         </div>
-      </main>
+        <div className={styles.trustBadge}>
+          <strong>#2 of 26</strong> Sydney tours
+        </div>
+        <div className={styles.trustBadge}>
+          Local guide team
+        </div>
+      </section>
+
+      {/* 3. Intent-based Tour Selector */}
+      <section className={styles.intentSelector}>
+        <h2>How much time do you have?</h2>
+        <div className={styles.intentGrid}>
+          <Link href="/tours#quick" className={styles.intentCard}>1-2 Hours</Link>
+          <Link href="/tours#half" className={styles.intentCard}>Half Day (4-5 hrs)</Link>
+          <Link href="/tours#full" className={styles.intentCard}>Full Day (5-10 hrs)</Link>
+          <Link href="/tours#private" className={styles.intentCard}>Private & Custom</Link>
+        </div>
+      </section>
+
+      {/* 4. Featured Flagship Tour */}
+      <section className={styles.featuredTour}>
+        <h2>Our Flagship Experience</h2>
+        <div className={styles.featuredWrapper}>
+           {flagshipTour && <TourCard tour={flagshipTour} variant="flagship" />}
+        </div>
+      </section>
+
+      {/* 5. Live Review Ticker */}
+      <section className={styles.reviewsSection}>
+        <ReviewTicker />
+      </section>
+
+      {/* 6. Good to know Trust Strip */}
+      <TrustStrip />
     </div>
   );
 }
