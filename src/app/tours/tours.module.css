@@ -1,0 +1,75 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6);
+  background-color: var(--color-bg);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-16);
+  perspective: 1000px;
+}
+
+.title {
+  font-size: var(--text-4xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.03em;
+  position: relative;
+  display: inline-block;
+  animation: slideDown 0.6s var(--transition-normal) forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-normal);
+}
+
+.section {
+  margin-bottom: var(--space-20);
+}
+
+.sectionHeading {
+  font-size: var(--text-2xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-6);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-primary-50);
+  position: relative;
+}
+
+.sectionHeading::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Flagship specific styling overrides on grid */
+@media (min-width: 992px) {
+  .flagshipGrid {
+    grid-template-columns: 1fr;
+  }
+}
