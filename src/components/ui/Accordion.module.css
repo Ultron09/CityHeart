@@ -1,0 +1,128 @@
+/* ============================================================
+   Accordion Component Styles
+   ============================================================ */
+
+.accordion {
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-white);
+  overflow: hidden;
+}
+
+/* ---- Accordion Item ---- */
+.item {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* ---- Trigger Button ---- */
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+
+  width: 100%;
+  /* Minimum 44×44px touch target */
+  min-height: 44px;
+  padding: var(--space-4) var(--space-5);
+
+  background-color: transparent;
+  border: none;
+  text-align: left;
+
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+  color: var(--color-text);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.trigger:hover {
+  background-color: var(--color-bg-muted);
+}
+
+.trigger:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: -2px;
+  z-index: 1;
+  position: relative;
+}
+
+.trigger[aria-expanded="true"] {
+  background-color: var(--color-primary-50);
+  color: var(--color-primary-dark);
+}
+
+/* ---- Trigger Icon ---- */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+
+  transition: transform var(--transition);
+}
+
+.trigger[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
+
+/* Simple chevron-down icon using SVG */
+.chevron {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Content Panel ---- */
+.panel {
+  overflow: hidden;
+  transition: height var(--transition-slow), opacity var(--transition);
+}
+
+.panelInner {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+/* ---- Collapsed state ---- */
+.panelCollapsed {
+  height: 0 !important;
+  opacity: 0;
+}
+
+/* ---- Respect reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  .trigger,
+  .icon,
+  .panel {
+    transition: none;
+  }
+
+  .trigger[aria-expanded="true"] .icon {
+    transform: none;
+  }
+
+  /* Still indicate expanded/collapsed visually, but without animation */
+  .panelCollapsed {
+    display: none;
+  }
+}

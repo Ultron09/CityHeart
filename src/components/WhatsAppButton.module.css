@@ -1,0 +1,143 @@
+/* ============================================================
+   WhatsAppButton Component Styles
+   ============================================================ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: var(--transition-colors), box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: var(--focus-ring-offset);
+  box-shadow: var(--focus-ring);
+}
+
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  white-space: nowrap;
+}
+
+/* ---- Variant: floating ---- */
+.floating {
+  position: fixed;
+  bottom: var(--space-5);
+  right: var(--space-5);
+  z-index: var(--z-sticky);
+
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-full);
+
+  background-color: #25D366;
+  color: #ffffff;
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-lg);
+
+  /* Hidden on desktop by default — shown only on mobile */
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .floating {
+    display: inline-flex;
+  }
+}
+
+/* Cruise pages: always visible regardless of viewport */
+.floatingCruise {
+  display: inline-flex;
+}
+
+.floating:hover {
+  background-color: #1ebe5d;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+.floating:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-md);
+}
+
+/* ---- Variant: inline ---- */
+.inline {
+  min-width: 44px;
+  min-height: 44px;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-md);
+
+  background-color: #25D366;
+  color: #ffffff;
+  font-size: var(--text-base);
+  box-shadow: var(--shadow-sm);
+}
+
+.inline:hover {
+  background-color: #1ebe5d;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.inline:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* ---- Variant: primary ---- */
+.primary {
+  min-width: 44px;
+  min-height: 52px;
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-lg);
+
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+  font-size: var(--text-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.primary .icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.primary:hover {
+  background-color: var(--color-accent-dark);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.primary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+
+  .button:hover,
+  .button:active {
+    transform: none;
+  }
+}

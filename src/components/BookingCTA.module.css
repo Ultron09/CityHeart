@@ -1,0 +1,88 @@
+/* ============================================================
+   BookingCTA Component Styles
+   ============================================================ */
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Minimum 44×44px touch target */
+  min-height: 44px;
+  min-width: 44px;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  white-space: nowrap;
+
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-colors), box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: var(--focus-ring-offset);
+  box-shadow: var(--focus-ring);
+}
+
+.cta:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.cta:active {
+  background-color: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.icon {
+  width: 1.25em;
+  height: 1.25em;
+  flex-shrink: 0;
+}
+
+.label {
+  /* inherits from .cta */
+}
+
+/* ---- Size: large ---- */
+.large {
+  min-height: 52px;
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-lg);
+  border-radius: var(--radius-lg);
+}
+
+.large .icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .cta {
+    transition: none;
+  }
+
+  .cta:hover,
+  .cta:active {
+    transform: none;
+  }
+}

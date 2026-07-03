@@ -1,0 +1,119 @@
+/* ============================================================
+   StopItinerary Component Styles
+   ============================================================ */
+
+.wrapper {
+  width: 100%;
+}
+
+.heading {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-8);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* ---- Each stop item ---- */
+.item {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  padding: var(--space-8) 0;
+  border-bottom: 1px solid var(--color-border-light);
+  position: relative;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+/* Desktop two-column: text left, image right */
+@media (min-width: 1024px) {
+  .item {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-10);
+    align-items: center;
+  }
+}
+
+/* ---- Left/text column ---- */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ---- Number badge ---- */
+.number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+/* ---- Stop name ---- */
+.stopName {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  line-height: var(--leading-snug);
+  margin: 0;
+}
+
+/* ---- Description ---- */
+.description {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* ---- Duration hint ---- */
+.durationHint {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* ---- Image column ---- */
+.imageCol {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--color-bg-muted);
+}
+
+/* Stack: image above text on mobile */
+@media (max-width: 1023px) {
+  .imageCol {
+    order: -1;
+  }
+}
+
+.image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

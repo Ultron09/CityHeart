@@ -1,0 +1,186 @@
+/* ============================================================
+   PricePanel Component Styles
+   ============================================================ */
+
+/* ---- Mobile: fixed bottom bar ---- */
+.panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-overlay);
+  background-color: var(--color-bg-white);
+  border-top: 1px solid var(--color-border);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
+  padding: var(--space-4) var(--space-4) env(safe-area-inset-bottom, var(--space-4));
+}
+
+/* ---- Desktop: sticky sidebar card ---- */
+@media (min-width: 1024px) {
+  .panel {
+    position: sticky;
+    top: 80px;
+    bottom: auto;
+    left: auto;
+    right: auto;
+    width: 350px;
+    border-top: none;
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-6);
+  }
+}
+
+/* ---- Inner layout ---- */
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---- Tour title ---- */
+.tourTitle {
+  font-size: var(--text-base);
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  /* hide on mobile to save space */
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .tourTitle {
+    display: block;
+    font-size: var(--text-lg);
+  }
+}
+
+/* ---- Price section ---- */
+.priceSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.priceRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.price {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+@media (min-width: 1024px) {
+  .price {
+    font-size: var(--text-3xl);
+  }
+}
+
+.priceStrike {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+}
+
+.pricePer {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.priceGroupEquiv {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* ---- Jessie row ---- */
+.jessieRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.jessiePhoto {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--color-bg-muted);
+  border: 2px solid var(--color-primary-100);
+  position: relative;
+}
+
+.jessiePhotoImg {
+  object-fit: cover;
+}
+
+.jessieLabel {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-snug);
+}
+
+.jessieName {
+  font-weight: var(--font-semibold);
+  color: var(--color-text);
+}
+
+/* ---- CTA stack ---- */
+.ctaStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* Mobile: side-by-side CTAs */
+@media (max-width: 1023px) {
+  .inner {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .priceSection {
+    flex: 1;
+    gap: 0;
+  }
+
+  .jessieRow {
+    display: none;
+  }
+
+  .ctaStack {
+    flex-direction: row;
+    flex-shrink: 0;
+  }
+}
+
+/* Divider (desktop only) */
+.divider {
+  display: none;
+  height: 1px;
+  background-color: var(--color-border-light);
+}
+
+@media (min-width: 1024px) {
+  .divider {
+    display: block;
+  }
+}
+
+/* Badge inline */
+.badgeRow {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
