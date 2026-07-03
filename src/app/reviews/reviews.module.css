@@ -1,0 +1,200 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-12);
+  perspective: 1000px;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-2);
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-normal);
+}
+
+/* Stat Grid Overview */
+.statSection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-12);
+}
+
+@media (min-width: 768px) {
+  .statSection {
+    grid-template-columns: 4fr 8fr;
+    align-items: center;
+  }
+}
+
+.statSummary {
+  text-align: center;
+  border-bottom: 1px solid var(--color-border-light);
+  padding-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .statSummary {
+    border-bottom: none;
+    border-right: 1px solid var(--color-border-light);
+    padding-bottom: 0;
+    padding-right: var(--space-6);
+  }
+}
+
+.score {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  color: var(--color-primary-dark);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.stars {
+  color: #FFC107;
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-1);
+}
+
+.statBadge {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-semibold);
+}
+
+/* Bar Chart breakdown */
+.breakdownList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.breakdownRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.label {
+  width: 80px;
+  text-align: right;
+  color: var(--color-text-secondary);
+  font-weight: var(--font-medium);
+}
+
+.barWrapper {
+  flex: 1;
+  height: 10px;
+  background-color: var(--color-bg-muted);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.barFill {
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+.count {
+  width: 40px;
+  color: var(--color-text-muted);
+  font-weight: var(--font-semibold);
+}
+
+/* Grid layout with tilts */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+  perspective: 1200px;
+}
+
+.reviewCard {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.reviewCard:hover {
+  transform: translate3d(0, -6px, 10px) rotateX(1deg);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.reviewerName {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-text);
+}
+
+.reviewDate {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.reviewStars {
+  color: #FFC107;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+
+.reviewTitle {
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-2);
+}
+
+.reviewText {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  font-style: italic;
+  flex: 1;
+}
+
+.tourTag {
+  align-self: flex-start;
+  font-size: var(--text-xs);
+  color: var(--color-primary);
+  background-color: var(--color-primary-50);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  margin-top: var(--space-4);
+  font-weight: var(--font-bold);
+}

@@ -1,0 +1,178 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-16) var(--space-6);
+}
+
+.hero {
+  text-align: center;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #163641 100%);
+  color: var(--color-text-inverse);
+  padding: var(--space-16) var(--space-8);
+  border-radius: var(--radius-2xl);
+  margin-bottom: var(--space-12);
+  box-shadow: var(--shadow-lg);
+  perspective: 1000px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.02em;
+}
+
+.hero p {
+  font-size: var(--text-lg);
+  opacity: 0.9;
+  max-width: 700px;
+  margin: 0 auto var(--space-6);
+  font-weight: 300;
+}
+
+.guaranteeBox {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-bold);
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.guaranteeBadge {
+  background-color: var(--color-accent);
+  color: white;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+}
+
+/* Port Meeting Spot Section */
+.meetingSpot {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10);
+  margin-bottom: var(--space-16);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .meetingSpot {
+    grid-template-columns: 6fr 4fr;
+    align-items: center;
+  }
+}
+
+.meetingText h2 {
+  font-size: var(--text-2xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-4);
+}
+
+.meetingText p {
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-4);
+}
+
+.meetingGraphic {
+  background-color: var(--color-bg-muted);
+  border: 1px solid var(--color-border-light);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.meetingGraphic h4 {
+  font-size: var(--text-base);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-2);
+}
+
+.meetingGraphic p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Tour branches by duration */
+.branchesSection {
+  margin-bottom: var(--space-20);
+}
+
+.branchesTitle {
+  text-align: center;
+  font-size: var(--text-2xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-10);
+}
+
+.branchGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-8);
+}
+
+.branchCard {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.branchCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.branchDuration {
+  color: var(--color-accent);
+  font-weight: var(--font-bold);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+.branchName {
+  font-size: var(--text-xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-4);
+}
+
+.branchDesc {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+  flex: 1;
+}
+
+.branchCTA {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  text-align: center;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-bold);
+  transition: background-color var(--transition-fast);
+}
+
+.branchCard:hover .branchCTA {
+  background-color: var(--color-primary-dark);
+}
