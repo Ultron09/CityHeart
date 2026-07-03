@@ -5,86 +5,130 @@
 }
 
 .hero {
-  height: 80vh;
-  min-height: 500px;
+  height: 85vh;
+  min-height: 600px;
   background-color: var(--primary-dark);
-  /* Placeholder for actual hero image */
-  background-image: linear-gradient(rgba(18, 48, 61, 0.7), rgba(18, 48, 61, 0.8));
+  background-image: linear-gradient(rgba(18, 48, 61, 0.4), rgba(18, 48, 61, 0.8)), url('/hero-bg.png');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: white;
   padding: 2rem;
+  position: relative;
 }
 
 .heroOverlay {
   max-width: 800px;
+  background: var(--glass-border);
+  backdrop-filter: blur(12px);
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-lg);
+  animation: fadeUp 0.8s var(--transition-normal) forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .heroTitle {
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
-  margin-bottom: 1rem;
-  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .heroSubtitle {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-  opacity: 0.9;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  margin-bottom: 2.5rem;
+  opacity: 0.95;
+  font-weight: 300;
 }
 
 .heroCTA {
   display: inline-block;
-  background-color: var(--accent);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
   color: white;
-  padding: 1rem 2rem;
+  padding: 1.2rem 2.5rem;
   font-size: 1.25rem;
   font-weight: 600;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  border-radius: 50px;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .heroCTA:hover {
-  background-color: var(--accent-light);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(199, 91, 48, 0.4);
 }
 
 .trustBar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 1.5rem;
-  background-color: var(--surface);
+  padding: 2rem;
+  background: var(--surface);
   border-bottom: 1px solid var(--border);
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  z-index: 10;
 }
 
 .trustBadge {
   font-size: 1.1rem;
   color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
 }
 
 .intentSelector {
-  padding: 4rem 2rem;
+  padding: 6rem 2rem;
   background-color: var(--surface-alt);
   text-align: center;
 }
 
 .intentSelector h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: var(--primary-dark);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.intentSelector h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
 }
 
 .intentGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
-  max-width: 1000px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -92,41 +136,78 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 3rem 2rem;
   background-color: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--primary);
-  transition: all 0.2s;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.intentCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(31, 75, 94, 0.05) 0%, rgba(31, 75, 94, 0) 100%);
+  z-index: -1;
+  transition: opacity var(--transition-normal);
+  opacity: 0;
 }
 
 .intentCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  border-color: var(--accent);
-  color: var(--accent);
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.intentCard:hover::before {
+  opacity: 1;
 }
 
 .featuredTour {
-  padding: 4rem 2rem;
+  padding: 6rem 2rem;
   text-align: center;
+  background: var(--surface);
 }
 
 .featuredTour h2 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: var(--primary-dark);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.featuredTour h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--accent);
+  border-radius: 2px;
 }
 
 .featuredWrapper {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
+  text-align: left;
 }
 
 .reviewsSection {
-  padding: 4rem 0;
-  background-color: var(--primary-dark);
+  padding: 5rem 0;
+  background: linear-gradient(to right, var(--primary-dark), var(--primary));
   color: white;
 }
