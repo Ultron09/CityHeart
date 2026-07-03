@@ -2,112 +2,149 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--color-bg);
 }
 
+/* Immersive Hero Section */
 .hero {
+  position: relative;
   height: 85vh;
   min-height: 600px;
-  background-color: var(--primary-dark);
-  background-image: linear-gradient(rgba(18, 48, 61, 0.4), rgba(18, 48, 61, 0.8)), url('/hero-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: white;
-  padding: 2rem;
-  position: relative;
+  color: var(--color-text-inverse);
+  padding: var(--space-6);
+  background-color: var(--color-primary-dark);
+  background-image: linear-gradient(rgba(15, 74, 85, 0.4), rgba(15, 74, 85, 0.8)), url('/hero-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
+  perspective: 1000px;
 }
 
+/* Glassmorphic overlay card */
 .heroOverlay {
+  position: relative;
   max-width: 800px;
-  background: var(--glass-border);
-  backdrop-filter: blur(12px);
-  padding: 3rem 2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: var(--shadow-lg);
-  animation: fadeUp 0.8s var(--transition-normal) forwards;
-  opacity: 0;
-  transform: translateY(20px);
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  padding: var(--space-12) var(--space-8);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  animation: slideUpFade 1s var(--transition-normal) forwards;
+  color: var(--color-text);
+  transform-style: preserve-3d;
 }
 
-@keyframes fadeUp {
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(40px) translateZ(-50px) rotateX(10deg);
+  }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateZ(0) rotateX(0deg);
   }
 }
 
 .heroTitle {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  line-height: 1.1;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+  color: var(--color-primary-dark);
+  letter-spacing: -0.03em;
 }
 
 .heroSubtitle {
-  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-  margin-bottom: 2.5rem;
-  opacity: 0.95;
-  font-weight: 300;
+  font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-normal);
 }
 
 .heroCTA {
-  display: inline-block;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-  color: white;
-  padding: 1.2rem 2.5rem;
-  font-size: 1.25rem;
-  font-weight: 600;
-  border-radius: 50px;
-  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-light) 100%);
+  color: var(--color-text-inverse);
+  padding: var(--space-4) var(--space-8);
+  font-size: var(--text-base);
+  font-weight: var(--font-bold);
+  border-radius: var(--radius-full);
   box-shadow: var(--shadow-md);
+  transition: all var(--transition-fast);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.05em;
 }
 
 .heroCTA:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(199, 91, 48, 0.4);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(196, 107, 37, 0.4);
 }
 
+.heroCTA:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+/* Floating Glass Trust Bar */
 .trustBar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  max-width: 1200px;
+  width: 90%;
+  margin: -40px auto 0;
+  padding: var(--space-5) var(--space-4);
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-sticky);
   flex-wrap: wrap;
-  gap: 1.5rem;
-  box-shadow: var(--shadow-sm);
-  position: relative;
-  z-index: 10;
+  gap: var(--space-4);
 }
 
 .trustBadge {
-  font-size: 1.1rem;
-  color: var(--primary);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-weight: 500;
+  gap: var(--space-2);
+  font-weight: var(--font-semibold);
+  transition: transform var(--transition-fast);
 }
 
+.trustBadge:hover {
+  transform: translateY(-2px);
+  color: var(--color-primary);
+}
+
+.trustBadge strong {
+  color: var(--color-primary-dark);
+  font-weight: var(--font-bold);
+}
+
+/* Intent-based Tour Selector Section */
 .intentSelector {
-  padding: 6rem 2rem;
-  background-color: var(--surface-alt);
+  padding: var(--space-24) var(--space-6);
   text-align: center;
+  perspective: 1200px;
 }
 
 .intentSelector h2 {
-  font-size: 2.5rem;
-  color: var(--primary-dark);
-  margin-bottom: 3rem;
+  font-size: var(--text-3xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-12);
   position: relative;
   display: inline-block;
 }
@@ -118,72 +155,72 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 50px;
   height: 3px;
-  background-color: var(--accent);
-  border-radius: 2px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
 }
 
 .intentGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 2rem;
+  gap: var(--space-6);
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .intentCard {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 3rem 2rem;
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--primary);
+  padding: var(--space-10) var(--space-6);
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-lg);
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
   transition: all var(--transition-normal);
   box-shadow: var(--shadow-sm);
+  cursor: pointer;
   position: relative;
   overflow: hidden;
-  z-index: 1;
+  will-change: transform, box-shadow;
 }
 
 .intentCard::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, rgba(31, 75, 94, 0.05) 0%, rgba(31, 75, 94, 0) 100%);
-  z-index: -1;
-  transition: opacity var(--transition-normal);
+  inset: 0;
+  background: linear-gradient(135deg, rgba(26, 110, 124, 0.04) 0%, rgba(26, 110, 124, 0) 100%);
   opacity: 0;
+  transition: opacity var(--transition-normal);
 }
 
 .intentCard:hover {
-  transform: translateY(-8px);
+  transform: translate3d(0, -8px, 15px) rotateX(2deg);
   box-shadow: var(--shadow-lg);
-  border-color: var(--primary-light);
-  color: var(--primary-dark);
+  border-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
 }
 
 .intentCard:hover::before {
   opacity: 1;
 }
 
+/* Featured Section */
 .featuredTour {
-  padding: 6rem 2rem;
+  padding: var(--space-20) var(--space-6);
   text-align: center;
-  background: var(--surface);
+  background-color: var(--color-bg-white);
+  border-top: 1px solid var(--color-border-light);
 }
 
 .featuredTour h2 {
-  font-size: 2.5rem;
-  color: var(--primary-dark);
-  margin-bottom: 3rem;
+  font-size: var(--text-3xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-12);
   position: relative;
   display: inline-block;
 }
@@ -194,10 +231,10 @@
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px;
+  width: 50px;
   height: 3px;
-  background-color: var(--accent);
-  border-radius: 2px;
+  background-color: var(--color-accent);
+  border-radius: var(--radius-full);
 }
 
 .featuredWrapper {
@@ -206,8 +243,10 @@
   text-align: left;
 }
 
+/* Reviews Ticker Section */
 .reviewsSection {
-  padding: 5rem 0;
-  background: linear-gradient(to right, var(--primary-dark), var(--primary));
-  color: white;
+  padding: var(--space-16) 0;
+  background: linear-gradient(135deg, var(--color-primary-dark) 0%, #173841 100%);
+  color: var(--color-text-inverse);
+  box-shadow: inset 0 8px 32px rgba(0, 0, 0, 0.1);
 }

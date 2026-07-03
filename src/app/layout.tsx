@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description: "Experience the real Cape Breton with Jaswinder Singh. Offering private and small-group tours of the Cabot Trail, Louisbourg, and more.",
 };
 
+import NavBar from "@/components/NavBar";
 import WhatsAppButton from '@/components/WhatsAppButton';
 
 export default function RootLayout({
@@ -27,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${outfit.variable} ${inter.variable}`}>
       <body>
+        <NavBar />
         <main>{children}</main>
         <WhatsAppButton variant="floating" />
       </body>
