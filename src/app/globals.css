@@ -1,94 +1,80 @@
 @import "../styles/globals.css";
 
 :root {
-  /* Dynamic Palette Overrides (Acadian Coastal Theme) */
-  --color-primary: #1e566b;
-  --color-primary-light: #2c7c9c;
-  --color-primary-dark: #123644;
-  --color-primary-50: #f2f7f9;
-  --color-primary-100: #d6e8ef;
-
-  --color-accent: #d25f2d;
-  --color-accent-light: #ea7a49;
-  --color-accent-dark: #a24219;
-  --color-accent-50: #fef5f1;
-
-  --color-bg: #f9fbfb;
-  --color-bg-white: #ffffff;
-  --color-bg-muted: #edf2f4;
-  --color-bg-dark: #0f1c21;
-
-  --color-text: #1d2528;
-  --color-text-secondary: #48565b;
-  --color-text-muted: #798b92;
-
-  --color-border: #e2e8eb;
-  --color-border-light: #f0f4f6;
+  /* Cinematic Terrestrial Wanderlust Palette */
+  --color-primary: #C1663E;        /* Dusk Terracotta */
+  --color-primary-light: #ea7a49;
+  --color-primary-dark: #a24219;
+  --color-primary-50: rgba(193, 102, 62, 0.05);
+  --color-primary-100: rgba(193, 102, 62, 0.15);
+  
+  --color-accent: #A9843D;         /* Brass */
+  --color-accent-light: #c59e51;
+  --color-accent-dark: #8c6a2d;
+  
+  --color-bg: #EDE3D3;             /* Sun-bleached Sand */
+  --color-bg-white: #FAF7F0;       /* Cloud White */
+  --color-bg-muted: #e4dac7;
+  --color-bg-dark: #1B3A4B;        /* Deep Harbour */
+  
+  --color-text: #14201F;           /* Ink */
+  --color-text-secondary: #2b3a39;
+  --color-text-muted: #576867;
+  --color-text-inverse: #FAF7F0;   /* Cloud White */
+  
+  --color-border: #A9843D;         /* Brass hairline */
+  --color-border-light: rgba(169, 132, 61, 0.2); /* Semi-transparent Brass */
 
   /* Spatial depth shadows */
-  --shadow-sm: 0 2px 8px rgba(30, 86, 107, 0.04);
-  --shadow: 0 4px 16px rgba(30, 86, 107, 0.06);
-  --shadow-md: 0 10px 30px rgba(30, 86, 107, 0.08);
-  --shadow-lg: 0 20px 48px rgba(30, 86, 107, 0.12);
-  --shadow-xl: 0 32px 64px rgba(30, 86, 107, 0.16);
+  --shadow-sm: 0 4px 12px rgba(20, 32, 31, 0.03);
+  --shadow: 0 8px 24px rgba(20, 32, 31, 0.05);
+  --shadow-md: 0 16px 40px rgba(20, 32, 31, 0.07);
+  --shadow-lg: 0 24px 60px rgba(20, 32, 31, 0.09);
+  --shadow-xl: 0 32px 80px rgba(20, 32, 31, 0.12);
 
-  /* Glassmorphism Variables */
-  --glass-bg: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(255, 255, 255, 0.4);
-  --glass-shadow: 0 8px 32px rgba(30, 86, 107, 0.06);
+  /* Tactile Editorial border radii */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
   
-  --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #090e11;
-    --color-bg-white: #11181c;
-    --color-bg-muted: #1b262d;
-    --color-text: #f0f4f6;
-    --color-text-secondary: #b2c0c5;
-    --color-text-muted: #798b92;
-
-    --color-border: #233139;
-    --color-border-light: #1b272d;
-
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-    --shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.4);
-    --shadow-xl: 0 32px 64px rgba(0, 0, 0, 0.5);
-
-    --glass-bg: rgba(17, 24, 28, 0.75);
-    --glass-border: rgba(255, 255, 255, 0.06);
-    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
-}
-
-/* Base Typographic Enhancements */
+/* Base Typographic Overrides */
 body {
   font-family: var(--font-inter), var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
+  margin: 0;
+  padding: 0;
   transition: background-color var(--transition-normal), color var(--transition-normal);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-outfit), var(--font-sans);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
 }
 
-/* Dynamic Entrance Animation Class */
-.animate-entrance {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: floatIn 0.8s var(--transition-normal) forwards;
+/* Monospace Utility details */
+.mono-label {
+  font-family: var(--font-mono), monospace;
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
 }
 
-@keyframes floatIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Brass Hairline Divider Utility */
+.brass-hairline {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  opacity: 0.3;
+  margin: 0;
 }
