@@ -7,69 +7,135 @@
 
 .header {
   text-align: center;
-  margin-bottom: var(--space-16);
-  perspective: 1000px;
+  margin-bottom: var(--space-12);
 }
 
 .title {
-  font-size: var(--text-4xl);
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
   color: var(--color-primary-dark);
+  margin-top: var(--space-2);
   margin-bottom: var(--space-3);
-  letter-spacing: -0.03em;
-  position: relative;
-  display: inline-block;
-  animation: slideDown 0.6s var(--transition-normal) forwards;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
-  font-size: var(--text-lg);
+  font-size: var(--text-base);
   color: var(--color-text-secondary);
-  font-weight: var(--font-normal);
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-style: italic;
 }
 
-.section {
-  margin-bottom: var(--space-20);
+/* Ship's Filter Ledger Bar */
+.ledger {
+  margin-bottom: var(--space-12);
 }
 
-.sectionHeading {
-  font-size: var(--text-2xl);
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.filterBtn {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  background: transparent;
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-secondary);
+  padding: 6px var(--space-3);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all var(--transition-fast);
+}
+
+.filterBtn:hover {
+  background-color: var(--color-primary-50);
+  border-color: var(--color-primary);
   color: var(--color-primary-dark);
-  margin-bottom: var(--space-6);
-  padding-bottom: var(--space-2);
-  border-bottom: 2px solid var(--color-primary-50);
-  position: relative;
 }
 
-.sectionHeading::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background-color: var(--color-accent);
+.activeFilter {
+  background-color: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
+  color: var(--color-bg-white) !important;
+  font-weight: 600;
 }
 
+.searchBox {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding: 2px var(--space-2);
+  max-width: 320px;
+  width: 100%;
+}
+
+.searchIcon {
+  font-size: 0.9rem;
+  margin-right: 6px;
+}
+
+.searchInput {
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--color-text);
+  width: 100%;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+/* Dynamic Grid */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--space-8);
 }
 
-/* Flagship specific styling overrides on grid */
-@media (min-width: 992px) {
-  .flagshipGrid {
-    grid-template-columns: 1fr;
-  }
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.coordStamp {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.6rem;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  opacity: 0.85;
+  border-bottom: 1px dashed var(--color-border-light);
+  padding-bottom: 4px;
+}
+
+/* No Results fallback card */
+.noResults {
+  text-align: center;
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border);
+  padding: var(--space-12) var(--space-6);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.noResultsIcon {
+  font-size: 2rem;
+  color: var(--color-accent);
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+.noResults h3 {
+  font-family: var(--font-fraunces), var(--font-serif);
+  color: var(--color-primary-dark);
+  margin: 0 0 var(--space-2) 0;
+}
+
+.noResults p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
 }

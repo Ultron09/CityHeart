@@ -1,5 +1,6 @@
 import Link from "next/link";
 import TrustStrip from "@/components/TrustStrip";
+import CruiseWaterTank from "@/components/CruiseWaterTank";
 import styles from "./cruise.module.css";
 
 export default function CruisePassengersPage() {
@@ -34,10 +35,7 @@ export default function CruisePassengersPage() {
           </p>
         </div>
         <div className={styles.meetingGraphic}>
-          <h4>Meeting Point Location</h4>
-          <p>Joan Harriss Cruise Pavilion</p>
-          <p>📍 74 Esplanade, Sydney, NS B1P 1A1</p>
-          <p><em>(Directly next to the Big Fiddle waterfront)</em></p>
+          <CruiseWaterTank />
         </div>
       </section>
 

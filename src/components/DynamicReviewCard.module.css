@@ -1,0 +1,73 @@
+.reviewCard {
+  background-color: var(--color-bg-white);
+  height: 100%;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+  border-bottom: 1px dashed var(--color-border-light);
+  padding-bottom: var(--space-3);
+}
+
+.reviewerName {
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text);
+  display: block;
+}
+
+.reviewDate {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+.starsContainer {
+  display: flex;
+  gap: 3px;
+}
+
+.star {
+  display: inline-block;
+  color: var(--color-accent);
+  font-size: 1.15rem;
+  text-shadow: 0 1px 2px rgba(169, 132, 61, 0.2);
+  will-change: transform, opacity;
+}
+
+.reviewTitle {
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-primary-dark);
+  margin: 0 0 var(--space-2) 0;
+  line-height: var(--leading-snug);
+}
+
+.reviewText {
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.tourTagWrapper {
+  margin-top: auto;
+}
+
+.tourTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  background-color: var(--color-bg);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border-light);
+  padding: 3px var(--space-2);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: inline-block;
+}

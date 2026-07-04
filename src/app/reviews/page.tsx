@@ -1,4 +1,5 @@
 import TrustStrip from "@/components/TrustStrip";
+import DynamicReviewCard from "@/components/DynamicReviewCard";
 import styles from "./reviews.module.css";
 
 export default function ReviewsPage() {
@@ -119,18 +120,7 @@ export default function ReviewsPage() {
       {/* Review Grid */}
       <section className={styles.grid}>
         {reviewsData.map((rev, index) => (
-          <div key={index} className={styles.reviewCard}>
-            <div className={styles.cardHeader}>
-              <div>
-                <span className={styles.reviewerName}>{rev.name}</span>
-                <div className={styles.reviewDate}>{rev.date}</div>
-              </div>
-              <div className={styles.stars}>{"★".repeat(rev.stars)}</div>
-            </div>
-            <h3 className={styles.reviewTitle}>{rev.title}</h3>
-            <p className={styles.reviewText}>&quot;{rev.text}&quot;</p>
-            <span className={styles.tourTag}>{rev.tour}</span>
-          </div>
+          <DynamicReviewCard key={index} {...rev} />
         ))}
       </section>
 
