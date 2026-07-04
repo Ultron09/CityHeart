@@ -6,6 +6,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import styles from "./page.module.css";
 import PaperGlobe from "@/components/PaperGlobe";
+import JourneyParallax from "@/components/JourneyParallax";
 import TourCard from "@/components/TourCard";
 import TrustStrip from "@/components/TrustStrip";
 import { getTourBySlug } from "@/data/tours";
@@ -101,6 +102,11 @@ export default function Home() {
           {flagshipTour && <TourCard tour={flagshipTour} variant="flagship" />}
         </div>
       </section>
+
+      <hr className="brass-hairline" />
+
+      {/* 3. The Journey - Scroll Parallax */}
+      <JourneyParallax />
 
       <hr className="brass-hairline" />
 
