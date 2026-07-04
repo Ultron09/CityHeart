@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useTransition, useEffect, useRef } from "react";
+import React, { useState, useTransition, useEffect, useRef, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { tours } from "@/data/tours";
 import TourCard from "@/components/TourCard";
+import CapeBretonMap from "@/components/CapeBretonMap";
 import styles from "./tours.module.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -18,6 +19,41 @@ export default function ToursPage() {
   const compassRef = useRef<SVGGElement>(null);
   const ledgerRef = useRef<HTMLDivElement>(null);
   const countRef = useRef<HTMLSpanElement>(null);
+  const [mapActiveSlug, setMapActiveSlug] = useState<string | null>(null);
+  const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
+  const handleMapPinHover = useCallback((slug: string | null) => {
+    setMapActiveSlug(slug);
+    // Highlight the corresponding card
+    if (slug) {
+      const cardEl = cardRefs.current.get(slug);
+      if (cardEl) {
+        gsap.to(cardEl, { boxShadow: "0 0 0 3px var(--color-accent)", scale: 1.02, duration: 0.3, ease: "power2.out" });
+      }
+    }
+    // Reset all other cards
+    cardRefs.current.forEach((el, key) => {
+      if (key !== slug) {
+        gsap.to(el, { boxShadow: "none", scale: 1, duration: 0.2 });
+      }
+    });
+  }, []);
+
+  const handleMapPinClick = useCallback((slug: string) => {
+    const cardEl = cardRefs.current.get(slug);
+    if (cardEl) {
+      cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      // Flash highlight
+      gsap.fromTo(cardEl, {
+        boxShadow: "0 0 0 4px var(--color-accent)",
+      }, {
+        boxShadow: "0 0 0 0px var(--color-accent)",
+        duration: 1.5,
+        ease: "power2.out",
+        delay: 0.5,
+      });
+    }
+  }, []);
 
   const handleFilterChange = (filter: string) => {
     startTransition(() => {
@@ -179,6 +215,13 @@ export default function ToursPage() {
         </p>
       </header>
 
+      {/* Interactive Cape Breton Navigation Chart */}
+      <CapeBretonMap
+        onPinHover={handleMapPinHover}
+        onPinClick={handleMapPinClick}
+        activeSlug={mapActiveSlug}
+      />
+
       {/* Ship's Log Filter Ledger */}
       <div ref={ledgerRef} className={styles.ledger}>
         <div className="brass-double-frame" style={{ width: "100%" }}>
@@ -226,7 +269,12 @@ export default function ToursPage() {
         {filteredTours.length > 0 ? (
           <div ref={gridRef} className={styles.grid}>
             {filteredTours.map((tour, index) => (
-              <div key={tour.id} className={styles.cardWrapper} style={{ perspective: "800px" }}>
+              <div
+                key={tour.id}
+                className={styles.cardWrapper}
+                style={{ perspective: "800px" }}
+                ref={(el) => { if (el) cardRefs.current.set(tour.slug, el); }}
+              >
                 <span className={styles.coordStamp}>
                   <span className={styles.indexBadge}>{String(index + 1).padStart(2, "0")}</span>
                   {tour.category === "quick-taste" && "LAT 46.13° N // SHORT PORT"}
