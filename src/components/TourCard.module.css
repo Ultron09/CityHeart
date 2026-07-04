@@ -6,22 +6,22 @@
   display: flex;
   flex-direction: column;
   background-color: var(--color-bg-white);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
   transition: all var(--transition-slow);
   text-decoration: none;
   color: inherit;
   height: 100%;
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border);
   transform-style: preserve-3d;
   will-change: transform, box-shadow;
 }
 
 .card:hover {
-  box-shadow: var(--shadow-xl);
-  transform: translate3d(0, -8px, 15px) rotateX(1.5deg) rotateY(-1.5deg);
-  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-lg);
+  transform: translate3d(0, -6px, 10px) rotateX(1deg);
+  border-color: var(--color-primary);
 }
 
 .card:focus-visible {
@@ -91,8 +91,9 @@
 }
 
 .title {
+  font-family: var(--font-fraunces), var(--font-serif);
   font-size: var(--text-lg);
-  font-weight: var(--font-bold);
+  font-weight: 500;
   line-height: var(--leading-snug);
   color: var(--color-text);
   margin: 0;

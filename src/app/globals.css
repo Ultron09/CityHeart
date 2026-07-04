@@ -120,3 +120,46 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 0.35;
   margin: 0;
 }
+
+/* Global Vertical side-margin stamps (editorial logbook register) */
+.left-margin-stamp {
+  display: none;
+}
+
+.right-margin-stamp {
+  display: none;
+}
+
+@media (min-width: 1200px) {
+  .left-margin-stamp {
+    display: block;
+    position: absolute;
+    left: var(--space-4);
+    top: 50vh;
+    transform: rotate(-90deg);
+    transform-origin: left center;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.65rem;
+    color: var(--color-accent);
+    letter-spacing: 0.25em;
+    opacity: 0.35;
+    white-space: nowrap;
+    z-index: 10;
+  }
+  
+  .right-margin-stamp {
+    display: block;
+    position: absolute;
+    right: var(--space-4);
+    top: 50vh;
+    transform: rotate(90deg);
+    transform-origin: right center;
+    font-family: var(--font-mono), monospace;
+    font-size: 0.65rem;
+    color: var(--color-accent);
+    letter-spacing: 0.25em;
+    opacity: 0.35;
+    white-space: nowrap;
+    z-index: 10;
+  }
+}

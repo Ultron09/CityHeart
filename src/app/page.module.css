@@ -5,49 +5,6 @@
   position: relative;
 }
 
-/* Vertical side-margin stamps (editorial logbook register) */
-.leftMarginStamp {
-  display: none;
-}
-
-.rightMarginStamp {
-  display: none;
-}
-
-@media (min-width: 1200px) {
-  .leftMarginStamp {
-    display: block;
-    position: absolute;
-    left: var(--space-4);
-    top: 50vh;
-    transform: rotate(-90deg) origin(left center);
-    transform-origin: left center;
-    font-family: var(--font-mono), monospace;
-    font-size: 0.65rem;
-    color: var(--color-accent);
-    letter-spacing: 0.2em;
-    opacity: 0.35;
-    white-space: nowrap;
-    z-index: 10;
-  }
-  
-  .rightMarginStamp {
-    display: block;
-    position: absolute;
-    right: var(--space-4);
-    top: 50vh;
-    transform: rotate(90deg) origin(right center);
-    transform-origin: right center;
-    font-family: var(--font-mono), monospace;
-    font-size: 0.65rem;
-    color: var(--color-accent);
-    letter-spacing: 0.2em;
-    opacity: 0.35;
-    white-space: nowrap;
-    z-index: 10;
-  }
-}
-
 /* Asymmetric Hero Section */
 .hero {
   display: grid;

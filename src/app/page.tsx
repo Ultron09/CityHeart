@@ -64,10 +64,6 @@ export default function Home() {
 
   return (
     <div ref={heroRef} className={styles.page}>
-      {/* Side-margin coordinate stamps */}
-      <div className={styles.leftMarginStamp}>SYDNEY // 46.13° N</div>
-      <div className={styles.rightMarginStamp}>CABOT TRAIL // 60.40° W</div>
-
       {/* 1. Asymmetric Hero */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>

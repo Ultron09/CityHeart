@@ -35,6 +35,9 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${inter.variable} ${mono.variable}`}>
       <body>
         <NavBar />
+        {/* Global coordinate side stamps */}
+        <div className="left-margin-stamp">SYDNEY // 46.13° N</div>
+        <div className="right-margin-stamp">CABOT TRAIL // 60.40° W</div>
         <main>{children}</main>
         <WhatsAppButton variant="floating" />
       </body>
