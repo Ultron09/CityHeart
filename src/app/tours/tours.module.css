@@ -8,6 +8,19 @@
 .header {
   text-align: center;
   margin-bottom: var(--space-12);
+  position: relative;
+}
+
+.compassContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.compassSvg {
+  width: 80px;
+  height: 80px;
+  opacity: 0.85;
 }
 
 .title {
@@ -27,7 +40,7 @@
 
 /* Ship's Filter Ledger Bar */
 .ledger {
-  margin-bottom: var(--space-12);
+  margin-bottom: var(--space-8);
 }
 
 .filterGroup {
@@ -47,12 +60,36 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.filterBtn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.filterBtn:hover::after {
+  width: 100%;
 }
 
 .filterBtn:hover {
   background-color: var(--color-primary-50);
   border-color: var(--color-primary);
   color: var(--color-primary-dark);
+}
+
+.filterIcon {
+  font-size: 0.85rem;
 }
 
 .activeFilter {
@@ -62,6 +99,11 @@
   font-weight: 600;
 }
 
+.activeFilter::after {
+  width: 100%;
+  background-color: var(--color-accent);
+}
+
 .searchBox {
   display: flex;
   align-items: center;
@@ -69,6 +111,11 @@
   padding: 2px var(--space-2);
   max-width: 320px;
   width: 100%;
+  transition: border-color 0.3s ease;
+}
+
+.searchBox:focus-within {
+  border-color: var(--color-accent);
 }
 
 .searchIcon {
@@ -89,6 +136,38 @@
   outline: none;
 }
 
+/* Results bar */
+.resultsBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-3);
+}
+
+.resultsCount {
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-size: var(--text-3xl);
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  line-height: 1;
+  display: inline-block;
+}
+
+.resultsLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.resultsDivider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-border) 0%, transparent 100%);
+}
+
 /* Dynamic Grid */
 .grid {
   display: grid;
@@ -100,6 +179,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.cardWrapper:hover {
+  transform: translateY(-6px);
 }
 
 .coordStamp {
@@ -110,6 +194,23 @@
   opacity: 0.85;
   border-bottom: 1px dashed var(--color-border-light);
   padding-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.indexBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--color-accent);
+  font-size: 0.55rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  flex-shrink: 0;
 }
 
 /* No Results fallback card */
