@@ -95,7 +95,7 @@ export default function SubmersionTransition() {
 
   if (!isActive) return null;
 
-  const bubbles = Array.from({ length: 25 }).map((_, i) => {
+  const bubbles = Array.from({ length: 45 }).map((_, i) => {
     const size = 6 + Math.random() * 18;
     const left = Math.random() * 100;
     const delay = Math.random() * 4;
