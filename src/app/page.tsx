@@ -18,17 +18,17 @@ export default function Home() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(".animate-text", {
-        y: 40,
-        opacity: 0,
+      gsap.to(".animate-text", {
+        y: 0,
+        opacity: 1,
         duration: 1.2,
         stagger: 0.15,
         ease: "power3.out",
       });
       
-      gsap.from(".animate-card", {
-        y: 60,
-        opacity: 0,
+      gsap.to(".animate-card", {
+        y: 0,
+        opacity: 1,
         duration: 1.2,
         stagger: 0.1,
         ease: "power3.out",

@@ -5,6 +5,17 @@
   position: relative;
 }
 
+/* Prevent FOUC flash of animated elements before GSAP triggers */
+:global(.animate-text) {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+:global(.animate-card) {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
 /* Asymmetric Hero Section */
 .hero {
   display: grid;

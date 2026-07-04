@@ -122,8 +122,11 @@ export default function PaperGlobe({ interactive = true }: PaperGlobeProps) {
     const container = containerRef.current;
     if (!container) return;
 
-    const width = container.clientWidth;
-    const height = container.clientHeight;
+    // Clear duplicate canvas remnants from StrictMode mounts
+    container.querySelectorAll("canvas:not(." + styles.canvas + ")").forEach((el) => el.remove());
+
+    const width = container.clientWidth || 350;
+    const height = container.clientHeight || 350;
 
     // Scene
     const scene = new THREE.Scene();
@@ -439,15 +442,15 @@ export default function PaperGlobe({ interactive = true }: PaperGlobeProps) {
       renderer.domElement.addEventListener("touchend", handleMouseUp);
     }
 
-    // Scroll Bindings via GSAP ScrollTrigger
+    // Scroll Bindings via GSAP ScrollTrigger - Bind to container instead of document.body
     const scrollTriggerObj = ScrollTrigger.create({
-      trigger: document.body,
-      start: "top top",
-      end: "bottom bottom",
+      trigger: container,
+      start: "top bottom",
+      end: "bottom top",
       scrub: true,
       onUpdate: (self) => {
-        targetRotationY = self.progress * Math.PI * 2.5;
-        camera.position.z = 2.3 + self.progress * 0.6;
+        targetRotationY = self.progress * Math.PI * 1.5;
+        camera.position.z = 2.3 + self.progress * 0.4;
       }
     });
 
