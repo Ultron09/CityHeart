@@ -23,7 +23,7 @@
   --color-text-inverse: #FAF7F0;   /* Cloud White */
   
   --color-border: #A9843D;         /* Brass hairline */
-  --color-border-light: rgba(169, 132, 61, 0.2); /* Semi-transparent Brass */
+  --color-border-light: rgba(169, 132, 61, 0.2);
 
   /* Spatial depth shadows */
   --shadow-sm: 0 4px 12px rgba(20, 32, 31, 0.03);
@@ -33,11 +33,11 @@
   --shadow-xl: 0 32px 80px rgba(20, 32, 31, 0.12);
 
   /* Tactile Editorial border radii */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-2xl: 16px;
+  --radius-sm: 1px; /* Sharper card edges resemble cut paper */
+  --radius-md: 2px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+  --radius-2xl: 8px;
   
   --transition-normal: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -55,26 +55,68 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 1. Procedural Fine Pulp Paper Noise Layer covering viewport */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    radial-gradient(rgba(20, 32, 31, 0.04) 1px, transparent 0),
+    radial-gradient(rgba(20, 32, 31, 0.025) 1px, transparent 0);
+  background-size: 6px 6px;
+  background-position: 0 0, 3px 3px;
+  pointer-events: none;
+  opacity: 0.65;
+  z-index: 9999;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-fraunces), var(--font-serif);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 400;
+  letter-spacing: -0.012em;
   color: var(--color-text);
 }
 
-/* Monospace Utility details */
-.mono-label {
-  font-family: var(--font-mono), monospace;
-  font-size: var(--text-xs);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-accent);
+/* 2. Newspaper editorial drop-caps */
+.drop-cap::first-letter {
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-size: 4rem;
+  font-weight: 500;
+  float: left;
+  line-height: 0.85;
+  padding-right: var(--space-3);
+  padding-top: var(--space-1);
+  color: var(--color-primary);
 }
 
-/* Brass Hairline Divider Utility */
+/* 3. Double-rule framing for cards */
+.brass-double-frame {
+  border: 1px solid var(--color-border);
+  padding: 3px;
+  background-color: transparent;
+}
+
+.brass-double-frame-inner {
+  border: 1px solid var(--color-border);
+  height: 100%;
+}
+
+/* Monospace labels */
+.mono-label {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: block;
+}
+
+/* Brass Hairline Divider */
 .brass-hairline {
   border: none;
   border-top: 1px solid var(--color-border);
-  opacity: 0.3;
+  opacity: 0.35;
   margin: 0;
 }

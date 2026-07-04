@@ -17,7 +17,6 @@ export default function Home() {
   const cardsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // GSAP load animation choreography
     const ctx = gsap.context(() => {
       gsap.from(".animate-text", {
         y: 40,
@@ -65,6 +64,10 @@ export default function Home() {
 
   return (
     <div ref={heroRef} className={styles.page}>
+      {/* Side-margin coordinate stamps */}
+      <div className={styles.leftMarginStamp}>SYDNEY // 46.13° N</div>
+      <div className={styles.rightMarginStamp}>CABOT TRAIL // 60.40° W</div>
+
       {/* 1. Asymmetric Hero */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
@@ -72,7 +75,8 @@ export default function Home() {
           <h1 className={`${styles.heroTitle} animate-text`}>
             Trace a route across Cape Breton.
           </h1>
-          <p className={`${styles.heroDesc} animate-text`}>
+          {/* Drop Cap styling on first letter */}
+          <p className={`${styles.heroDesc} drop-cap animate-text`}>
             I am Jaswinder Singh. I design private, small-group excursions 
             across the cliffs, Gaelic paths, and historic shorelines of Nova Scotia. 
             Come as a guest, leave as a friend.
@@ -88,7 +92,7 @@ export default function Home() {
 
       <hr className="brass-hairline" />
 
-      {/* 2. Featured Flagship Tour */}
+      {/* 2. Featured Flagship Tour (Double framed) */}
       <section className={styles.featured}>
         <div className={styles.featuredHeader}>
           <h2 className={styles.featuredTitle}>The Flagship Journey</h2>
@@ -99,7 +103,11 @@ export default function Home() {
           </p>
         </div>
         <div className={styles.featuredWrapper}>
-          {flagshipTour && <TourCard tour={flagshipTour} variant="flagship" />}
+          <div className="brass-double-frame" style={{ width: "100%" }}>
+            <div className="brass-double-frame-inner" style={{ padding: "8px", backgroundColor: "var(--color-bg-white)" }}>
+              {flagshipTour && <TourCard tour={flagshipTour} variant="flagship" />}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -110,7 +118,7 @@ export default function Home() {
 
       <hr className="brass-hairline" />
 
-      {/* 3. Destinations Horizontal card rail */}
+      {/* 4. Destinations Horizontal card rail */}
       <section className={styles.destinationsSection}>
         <div className={styles.destinationsHeader}>
           <h2 className={styles.destinationsTitle}>Signature Stops</h2>
@@ -118,17 +126,19 @@ export default function Home() {
         <div ref={cardsRef} className={styles.cardRail}>
           {destinations.map((dest, i) => (
             <div key={i} className={`${styles.destCard} animate-card`}>
-              <div className={styles.destImageWrapper}>
-                <Image
-                  src={dest.image}
-                  alt={`${dest.name} landscape`}
-                  fill
-                  sizes="280px"
-                  style={{ objectFit: "cover" }}
-                />
+              <div className="brass-double-frame-inner" style={{ padding: "4px", height: "100%", display: "flex", flexDirection: "column" }}>
+                <div className={styles.destImageWrapper}>
+                  <Image
+                    src={dest.image}
+                    alt={`${dest.name} landscape`}
+                    fill
+                    sizes="280px"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+                <h3 className={styles.destName}>{dest.name}</h3>
+                <span className={styles.destRegion}>{dest.region}</span>
               </div>
-              <h3 className={styles.destName}>{dest.name}</h3>
-              <span className={styles.destRegion}>{dest.region}</span>
             </div>
           ))}
         </div>
@@ -136,7 +146,7 @@ export default function Home() {
 
       <hr className="brass-hairline" />
 
-      {/* 4. Testimonials (Boarding-pass stubs) */}
+      {/* 5. Testimonials (Boarding-pass stubs) */}
       <section className={styles.testimonials}>
         <div className={styles.testimonialsHeader}>
           <h2 className={styles.testimonialsTitle}>Traveler Journals</h2>
@@ -146,41 +156,47 @@ export default function Home() {
         </div>
         
         <div className={styles.ticketGrid}>
+          {/* Passenger stub 1 */}
           <div className={styles.boardingPass}>
-            <div className={styles.passHeader}>
-              <span className={styles.passCode}>PASSENGER STUB // CABOT</span>
-              <span className={styles.passFlight}>FLIGHT CHT-082</span>
-            </div>
-            <p className={styles.passQuote}>
-              &quot;We booked Jessie for the Cabot Trail loop. What an incredible day! 
-              He knew all the best lookout spots and shared so many stories about Cape Breton. 
-              It was way better than the crowded ship bus tour.&quot;
-            </p>
-            <div className={styles.passFooter}>
-              <span>SARAH M. // BOSTON</span>
-              <span>GATE DOCK-1 // SYDNEY PORT</span>
+            <div className="brass-double-frame-inner" style={{ padding: "16px", display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between" }}>
+              <div className={styles.passHeader}>
+                <span className={styles.passCode}>PASSENGER STUB // CABOT</span>
+                <span className={styles.passFlight}>FLIGHT CHT-082</span>
+              </div>
+              <p className={styles.passQuote}>
+                &quot;We booked Jessie for the Cabot Trail loop. What an incredible day! 
+                He knew all the best lookout spots and shared so many stories about Cape Breton. 
+                It was way better than the crowded ship bus tour.&quot;
+              </p>
+              <div className={styles.passFooter}>
+                <span>SARAH M. // BOSTON</span>
+                <span>GATE DOCK-1 // SYDNEY PORT</span>
+              </div>
             </div>
           </div>
 
+          {/* Passenger stub 2 */}
           <div className={styles.boardingPass}>
-            <div className={styles.passHeader}>
-              <span className={styles.passCode}>PASSENGER STUB // LBG</span>
-              <span className={styles.passFlight}>FLIGHT CHT-104</span>
-            </div>
-            <p className={styles.passQuote}>
-              &quot;KV was super friendly and very knowledgeable. He explained the history 
-              of Sydney on the drive, and the Fortress of Louisbourg was absolutely fascinating. 
-              Very comfortable SUV.&quot;
-            </p>
-            <div className={styles.passFooter}>
-              <span>DAVID K. // TORONTO</span>
-              <span>GATE DOCK-1 // SYDNEY PORT</span>
+            <div className="brass-double-frame-inner" style={{ padding: "16px", display: "flex", flexDirection: "column", height: "100%", justifyContent: "space-between" }}>
+              <div className={styles.passHeader}>
+                <span className={styles.passCode}>PASSENGER STUB // LBG</span>
+                <span className={styles.passFlight}>FLIGHT CHT-104</span>
+              </div>
+              <p className={styles.passQuote}>
+                &quot;KV was super friendly and very knowledgeable. He explained the history 
+                of Sydney on the drive, and the Fortress of Louisbourg was absolutely fascinating. 
+                Very comfortable SUV.&quot;
+              </p>
+              <div className={styles.passFooter}>
+                <span>DAVID K. // TORONTO</span>
+                <span>GATE DOCK-1 // SYDNEY PORT</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 5. Booking CTA */}
+      {/* 6. Booking CTA */}
       <section className={styles.ctaSection}>
         <h2 className={styles.ctaTitle}>Trace your own route.</h2>
         <p className={styles.ctaDesc}>

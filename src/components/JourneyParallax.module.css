@@ -10,7 +10,7 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 250%; /* Extended width to allow sliding */
+  width: 300%; /* Wider footprint for extreme scroll progression */
   height: 100%;
   display: flex;
   align-items: flex-end;
@@ -20,11 +20,11 @@
 
 .svg {
   width: 100%;
-  height: 60%;
+  height: 70%;
   display: block;
 }
 
-/* Stacking hierarchy */
+/* Stacking layers */
 .layerBack {
   z-index: 1;
 }
@@ -41,11 +41,11 @@
   z-index: 4;
 }
 
-/* Text Overlay container */
+/* Text Container */
 .contentOverlay {
   position: relative;
   z-index: 10;
-  max-width: 600px;
+  max-width: 650px;
   margin: 0 auto;
   padding: 0 var(--space-8);
   height: 100%;
@@ -55,7 +55,8 @@
 }
 
 .stepTitle {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
   color: var(--color-text);
   margin-top: var(--space-2);
   margin-bottom: var(--space-4);
@@ -67,4 +68,25 @@
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
   color: var(--color-text-secondary);
+}
+
+/* Pulse keyframes for lighthouse beam */
+@keyframes sweep {
+  0% {
+    opacity: 0.25;
+    transform: rotate(-2deg);
+  }
+  50% {
+    opacity: 0.55;
+    transform: rotate(2deg);
+  }
+  100% {
+    opacity: 0.25;
+    transform: rotate(-2deg);
+  }
+}
+
+.lightBeam {
+  transform-origin: 0px -8px;
+  animation: sweep 8s ease-in-out infinite;
 }
