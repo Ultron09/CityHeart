@@ -1,0 +1,101 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #1B3A4B 0%, #0A161E 100%); /* Deep Harbour */
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  pointer-events: all; /* Blocks interaction during transition */
+}
+
+.content {
+  text-align: center;
+  z-index: 10;
+  color: var(--color-bg-white);
+  padding: var(--space-6);
+}
+
+.title {
+  font-family: var(--font-fraunces), var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--color-bg-white);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.coords {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  letter-spacing: 0.15em;
+}
+
+.wavesIcon {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: var(--space-6);
+}
+
+.wavesIcon span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+  animation: pulse 1.2s infinite ease-in-out;
+}
+
+.wavesIcon span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.wavesIcon span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Float up bubbles covering screen */
+.bubbleArea {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -40px;
+  background-color: rgba(250, 247, 240, 0.15);
+  border-radius: 50%;
+  animation: floatUpViewport 6s infinite linear;
+}
+
+.bubble:nth-child(1) { left: 10%; width: 40px; height: 40px; animation-duration: 5s; }
+.bubble:nth-child(2) { left: 30%; width: 20px; height: 20px; animation-duration: 7s; animation-delay: 1s; }
+.bubble:nth-child(3) { left: 50%; width: 60px; height: 60px; animation-duration: 6s; animation-delay: 2s; }
+.bubble:nth-child(4) { left: 70%; width: 30px; height: 30px; animation-duration: 5.5s; animation-delay: 0.5s; }
+.bubble:nth-child(5) { left: 90%; width: 50px; height: 50px; animation-duration: 8s; animation-delay: 3s; }
+
+@keyframes floatUpViewport {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-110vh) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.3); opacity: 1; }
+}

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import TrustStrip from "@/components/TrustStrip";
 import CruiseWaterTank from "@/components/CruiseWaterTank";
+import SubmersionTransition from "@/components/SubmersionTransition";
 import styles from "./cruise.module.css";
 
 export default function CruisePassengersPage() {
   return (
     <div className={styles.container}>
+      <SubmersionTransition />
       {/* Hero */}
       <section className={styles.hero}>
         <h1>Cruise Shore Excursions from Sydney Port</h1>

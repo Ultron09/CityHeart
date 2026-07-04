@@ -142,7 +142,7 @@ export default function JourneyParallax() {
 
       {/* Editorial Steps overlay */}
       <div ref={textRef} className={styles.contentOverlay}>
-        <div className="journey-step">
+        <div className={`${styles.journeyStep} journey-step`}>
           <span className="mono-label">LOGBOOK // 06:15 AM</span>
           <h2 className={styles.stepTitle}>Fog lifts over the lake.</h2>
           <p className={styles.stepDesc}>
@@ -151,7 +151,7 @@ export default function JourneyParallax() {
           </p>
         </div>
 
-        <div className="journey-step">
+        <div className={`${styles.journeyStep} journey-step`}>
           <span className="mono-label">LOGBOOK // 11:30 AM</span>
           <h2 className={styles.stepTitle}>Ascending Cape Smokey.</h2>
           <p className={styles.stepDesc}>
@@ -160,7 +160,7 @@ export default function JourneyParallax() {
           </p>
         </div>
 
-        <div className="journey-step">
+        <div className={`${styles.journeyStep} journey-step`}>
           <span className="mono-label">LOGBOOK // 04:45 PM</span>
           <h2 className={styles.stepTitle}>The wind at Green Cove.</h2>
           <p className={styles.stepDesc}>
@@ -169,7 +169,7 @@ export default function JourneyParallax() {
           </p>
         </div>
 
-        <div className="journey-step">
+        <div className={`${styles.journeyStep} journey-step`}>
           <span className="mono-label">LOGBOOK // 07:15 PM</span>
           <h2 className={styles.stepTitle}>Sunset at Chéticamp.</h2>
           <p className={styles.stepDesc}>
@@ -178,7 +178,7 @@ export default function JourneyParallax() {
           </p>
         </div>
 
-        <div className="journey-step">
+        <div className={`${styles.journeyStep} journey-step`}>
           <span className="mono-label">LOGBOOK // 10:00 PM</span>
           <h2 className={styles.stepTitle}>Highlands stargazing.</h2>
           <p className={styles.stepDesc}>

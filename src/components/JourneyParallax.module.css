@@ -49,9 +49,14 @@
   margin: 0 auto;
   padding: 0 var(--space-8);
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+}
+
+.journeyStep {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc(100% - var(--space-16));
+  max-width: 650px;
 }
 
 .stepTitle {
