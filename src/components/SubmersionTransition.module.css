@@ -1,19 +1,29 @@
-.overlay {
+.container {
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  /* Translucent dark teal water depth color */
-  background: linear-gradient(180deg, rgba(18, 41, 54, 0.76) 0%, rgba(7, 16, 21, 0.86) 100%);
-  backdrop-filter: blur(3px);
   z-index: 99999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.waterFill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%; /* Rising height animated by GSAP */
+  background: linear-gradient(180deg, rgba(18, 41, 54, 0.78) 0%, rgba(7, 16, 21, 0.88) 100%);
+  backdrop-filter: blur(3px);
+  pointer-events: all;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  pointer-events: all;
-  /* Apply liquid wobbly distortion filter to everything inside the water chamber */
+  /* Ripple distortion filter */
   filter: url(#liquidWaterRipple);
+  border-top: 2px solid rgba(169, 132, 61, 0.5); /* Wavy brass tank seal */
 }
 
 .filterSvg {
@@ -22,39 +32,31 @@
   height: 0;
 }
 
-/* Realistic water caustics shimmer effect */
 .causticsOverlay {
   position: absolute;
   inset: 0;
-  opacity: 0.16;
+  opacity: 0.18;
   background-image: 
-    radial-gradient(circle at 30% 20%, #FAF7F0 0%, transparent 40%),
-    radial-gradient(circle at 70% 60%, #FAF7F0 0%, transparent 45%);
+    radial-gradient(circle at 25% 15%, #FAF7F0 0%, transparent 35%),
+    radial-gradient(circle at 75% 55%, #FAF7F0 0%, transparent 40%);
   mix-blend-mode: overlay;
   animation: shimmer caustics 12s infinite alternate ease-in-out;
   pointer-events: none;
 }
 
 @keyframes shimmer {
-  0% {
-    transform: scale(1) translate(0, 0);
-  }
-  50% {
-    transform: scale(1.15) translate(-15px, 20px);
-  }
-  100% {
-    transform: scale(1) translate(15px, -20px);
-  }
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.15) translate(-10px, 15px); }
+  100% { transform: scale(1) translate(10px, -15px); }
 }
 
-/* Sun rays filtering down through the top of the ocean viewport */
 .sunRays {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 60%;
-  background: linear-gradient(135deg, rgba(169, 132, 61, 0.16) 0%, rgba(26, 58, 75, 0) 70%);
+  background: linear-gradient(135deg, rgba(169, 132, 61, 0.18) 0%, rgba(26, 58, 75, 0) 70%);
   pointer-events: none;
   mix-blend-mode: screen;
 }
@@ -64,6 +66,7 @@
   z-index: 10;
   color: var(--color-bg-white);
   padding: var(--space-6);
+  opacity: 0;
 }
 
 .title {
@@ -80,7 +83,6 @@
   font-size: 0.75rem;
   color: var(--color-accent);
   letter-spacing: 0.18em;
-  text-shadow: 0 1px 4px rgba(18, 41, 54, 0.5);
 }
 
 .wavesIcon {
@@ -98,15 +100,30 @@
   animation: pulse 1.2s infinite ease-in-out;
 }
 
-.wavesIcon span:nth-child(2) {
-  animation-delay: 0.2s;
+.wavesIcon span:nth-child(2) { animation-delay: 0.2s; }
+.wavesIcon span:nth-child(3) { animation-delay: 0.4s; }
+
+/* Swimming Fish Styling */
+.fishSvg {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 8px rgba(18, 41, 54, 0.4));
+  transform-style: preserve-3d;
 }
 
-.wavesIcon span:nth-child(3) {
-  animation-delay: 0.4s;
+/* Tail wag keyframes */
+.tailWag {
+  transform-origin: 12px 22px;
+  animation: wag 0.45s infinite ease-in-out;
 }
 
-/* Floating bubbles overlay */
+@keyframes wag {
+  0%, 100% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+}
+
+/* Rising bubbles */
 .bubbleArea {
   position: absolute;
   inset: 0;
@@ -118,28 +135,23 @@
   bottom: -40px;
   background-color: rgba(250, 247, 240, 0.18);
   border-radius: 50%;
-  animation: floatUpViewport 6s infinite linear;
+  animation: floatUpViewport 5s infinite linear;
+  will-change: transform, opacity;
 }
-
-.bubble:nth-child(1) { left: 15%; width: 35px; height: 35px; animation-duration: 5s; }
-.bubble:nth-child(2) { left: 35%; width: 22px; height: 22px; animation-duration: 7s; animation-delay: 1s; }
-.bubble:nth-child(3) { left: 55%; width: 50px; height: 50px; animation-duration: 6s; animation-delay: 2s; }
-.bubble:nth-child(4) { left: 75%; width: 28px; height: 28px; animation-duration: 5.5s; animation-delay: 0.5s; }
-.bubble:nth-child(5) { left: 88%; width: 45px; height: 45px; animation-duration: 8s; animation-delay: 3s; }
 
 @keyframes floatUpViewport {
   0% {
-    transform: translateY(0) scale(1);
+    transform: translateY(0) scale(0.6);
     opacity: 0;
   }
-  20% {
-    opacity: 0.6;
+  15% {
+    opacity: 0.65;
   }
-  90% {
-    opacity: 0.4;
+  85% {
+    opacity: 0.45;
   }
   100% {
-    transform: translateY(-110vh) scale(0.85);
+    transform: translateY(-110vh) scale(1.1);
     opacity: 0;
   }
 }

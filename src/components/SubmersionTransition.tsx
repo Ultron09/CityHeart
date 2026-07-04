@@ -5,73 +5,86 @@ import gsap from "gsap";
 import styles from "./SubmersionTransition.module.css";
 
 export default function SubmersionTransition() {
-  const overlayRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const waterRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const turbulenceRef = useRef<SVGFETurbulenceElement>(null);
   const [isActive, setIsActive] = useState(true);
 
   useEffect(() => {
-    const overlay = overlayRef.current;
+    const water = waterRef.current;
     const content = contentRef.current;
     const turb = turbulenceRef.current;
-    if (!overlay || !content) return;
+    if (!water || !content) return;
 
-    // 1. Wobbly liquid ripple animation (morph turbulence base frequency dynamically)
+    // 1. Wobbly liquid ripple animation
     let timelineTurb: gsap.core.Tween | null = null;
     if (turb) {
       timelineTurb = gsap.to(turb, {
-        attr: { baseFrequency: "0.02 0.035" },
-        duration: 8,
+        attr: { baseFrequency: "0.025 0.04" },
+        duration: 6,
         repeat: -1,
         yoyo: true,
         ease: "sine.inOut"
       });
     }
 
-    // 2. Viewport flood, submerge, and drain timeline
+    // 2. Tank filling, swimming fish, and draining GSAP timeline
     const tl = gsap.timeline({
       onComplete: () => {
-        setIsActive(false); // Clean up from DOM when finished
+        setIsActive(false);
         if (timelineTurb) timelineTurb.kill();
       }
     });
 
-    // Rise tide to flood screen
+    // Rise water level height like filling a tank (0% -> 100%)
     tl.fromTo(
-      overlay,
-      { yPercent: 100 },
+      water,
+      { height: "0%" },
       {
-        yPercent: 0,
-        duration: 1.5,
+        height: "100%",
+        duration: 2.2,
         ease: "power2.out",
       }
     )
-    // Dynamic text slide in
+    // Fade in text once screen is submerged
     .fromTo(
       content,
-      { opacity: 0, scale: 0.96 },
+      { opacity: 0, scale: 0.95 },
       {
         opacity: 1,
         scale: 1,
-        duration: 0.65,
+        duration: 0.6,
         ease: "power2.out",
       },
-      "-=0.5"
+      "-=0.6"
     )
-    // Keep screen submerged briefly
-    .to({}, { duration: 2.2 })
-    // Fade out text
+    // Animate wiggling fish swimming left to right across the tank
+    .fromTo(
+      "#swimmingFish",
+      { x: "-120px", y: "45vh" },
+      {
+        x: "105vw",
+        y: "35vh",
+        duration: 3.8,
+        ease: "power1.inOut"
+      },
+      "-=1.8" // starts swimming while filling completes
+    )
+    // Hold submerged state briefly
+    .to({}, { duration: 1.0 })
+    // Fade out text before draining
     .to(content, {
       opacity: 0,
-      y: -25,
-      duration: 0.55,
+      y: -20,
+      duration: 0.5,
       ease: "power2.in"
     })
-    // Pull water downwards to drain
-    .to(overlay, {
-      yPercent: -100,
-      duration: 1.5,
-      ease: "power3.inOut"
+    // Drain tank (100% -> 0%)
+    .to(water, {
+      height: "0%",
+      duration: 1.8,
+      ease: "power2.inOut"
     });
 
     return () => {
@@ -82,10 +95,30 @@ export default function SubmersionTransition() {
 
   if (!isActive) return null;
 
+  const bubbles = Array.from({ length: 25 }).map((_, i) => {
+    const size = 6 + Math.random() * 18;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 4;
+    const duration = 3 + Math.random() * 3;
+    return (
+      <div
+        key={i}
+        className={styles.bubble}
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          left: `${left}%`,
+          animationDelay: `${delay}s`,
+          animationDuration: `${duration}s`
+        }}
+      />
+    );
+  });
+
   return (
-    <div ref={overlayRef} className={styles.overlay}>
+    <div ref={containerRef} className={styles.container}>
       
-      {/* 1. SVG fractal noise liquid distortion filter definitions */}
+      {/* SVG liquid distortion filter definition */}
       <svg className={styles.filterSvg}>
         <defs>
           <filter id="liquidWaterRipple">
@@ -99,7 +132,7 @@ export default function SubmersionTransition() {
             <feDisplacementMap
               in="SourceGraphic"
               in2="noise"
-              scale="20"
+              scale="22"
               xChannelSelector="R"
               yChannelSelector="G"
             />
@@ -107,33 +140,48 @@ export default function SubmersionTransition() {
         </defs>
       </svg>
 
-      {/* Realistic shimmering water caustics overlay grid */}
-      <div className={styles.causticsOverlay} />
-      
-      {/* Subtle depth lighting layers */}
-      <div className={styles.sunRays} />
-
-      {/* Floating bubbles */}
-      <div className={styles.bubbleArea}>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-        <div className={styles.bubble}></div>
-      </div>
-
-      {/* Viewport Submersion Message (Distorted through liquid filter) */}
-      <div ref={contentRef} className={styles.content}>
-        <span className="mono-label" style={{ color: "#FAF7F0", opacity: 0.85 }}>DOCKING VERIFIED</span>
-        <h2 className={styles.title}>Submerging to Sydney Port...</h2>
-        <p className={styles.coords}>LAT 46.1387° N // LON 60.1934° W</p>
+      {/* The Water Tank Fill Element */}
+      <div ref={waterRef} className={styles.waterFill}>
         
-        {/* Wavy tide lines icon */}
-        <div className={styles.wavesIcon}>
-          <span></span>
-          <span></span>
-          <span></span>
+        {/* Shimmering caustics refracts */}
+        <div className={styles.causticsOverlay} />
+        <div className={styles.sunRays} />
+
+        {/* Dynamic swimming fish */}
+        <svg id="swimmingFish" width="90" height="45" className={styles.fishSvg} viewBox="0 0 100 45">
+          {/* Salmon body */}
+          <path d="M12,22 C32,8 65,8 82,22 C65,36 32,36 12,22 Z" fill="#A9843D" opacity="0.9" />
+          {/* Dorsal Fin */}
+          <path d="M42,13 L52,3 L48,14 Z" fill="#C1663E" opacity="0.9" />
+          {/* Ventral Fin */}
+          <path d="M50,31 L58,39 L54,30 Z" fill="#C1663E" opacity="0.8" />
+          {/* Eye */}
+          <circle cx="72" cy="19" r="2.2" fill="#FAF7F0" />
+          <circle cx="73.5" cy="18.5" r="0.8" fill="#14201F" />
+          {/* Wagging tail fin */}
+          <g className={styles.tailWag}>
+            <polygon points="12,22 0,10 3,22 0,34" fill="#C1663E" opacity="0.9" />
+          </g>
+        </svg>
+
+        {/* Dense bubble columns rising inside the tank */}
+        <div className={styles.bubbleArea}>
+          {bubbles}
         </div>
+
+        {/* Viewport Submersion Message */}
+        <div ref={contentRef} className={styles.content}>
+          <span className="mono-label" style={{ color: "#FAF7F0", opacity: 0.85 }}>TELEMETRY ACTIVE</span>
+          <h2 className={styles.title}>Filling Sydney Port Tank...</h2>
+          <p className={styles.coords}>LAT 46.1387° N // LON 60.1934° W</p>
+          
+          <div className={styles.wavesIcon}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
       </div>
 
     </div>
